@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ['./prebuild'],
+        clean: ['prebuild'],
         uglify:{
             target:{
                 files:{
@@ -102,6 +102,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['watch', 'replace']);
-    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'replace:dist', 'clean', 'uglify']);
+    grunt.registerTask('build', [
+        'less:production',
+        'htmlmin:dist',
+        'replace:dist',
+        'uglify',
+        'clean'
+    ]);
+
+grunt.registerTask('default', ['build']);
 } 
